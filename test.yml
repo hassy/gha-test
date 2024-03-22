@@ -1,5 +1,7 @@
 config:
   target: http://lab.artillery.io
+  plugins:
+    metrics-by-endpoint: {}
 scenarios:
   - flow:
       - log: "SECRET_URL: {{ $env.SECRET_URL }}"
