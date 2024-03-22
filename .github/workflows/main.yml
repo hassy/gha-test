@@ -14,9 +14,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Create dotenv file
+        env:
+          SECRET_URL: ${{ secrets.SECRET_URL }}
+        run: |
+          echo "SECRET_URL=$SECRET_URL" >> .env
+
       - name: Execute load tests
         uses: artilleryio/action-cli@v1
         with:
-          command: run test.yml
-        env:
-          SECRET_URL: ${{ secrets.SECRET_URL }}
+          command: run test.yml --dotenv .env
