@@ -7,3 +7,7 @@ scenarios:
       - log: "SECRET_URL: {{ $env.SECRET_URL }}"
       - get:
           url: "{{ $env.SECRET_URL }}"
+          capture:
+            - json: "$[4].title"
+              as: movieTitle
+      - log: "Movie title: {{ movieTitle }}"
